@@ -41,6 +41,83 @@ int main()
         if (strcmp((char*)o4, "ROOT\\DBUtilDrv2") != 0) { printf("BLOB_ROOT FAIL\n"); return 1; }
         printf("BLOB_ROOT: PASS (%s)\n", o4);
     }
+    {
+        unsigned char k5[16], o5[16];
+        TinyKey(k5);
+        TinyDecryptString((char*)o5, BLOB_CSA, 1, k5);
+        if (strcmp((char*)o5, "csagent.sys") != 0) { printf("BLOB_CSA FAIL\n"); return 1; }
+        printf("BLOB_CSA: PASS (%s)\n", o5);
+    }
+    {
+        unsigned char k6[16], o6[16];
+        TinyKey(k6);
+        TinyDecryptString((char*)o6, BLOB_CSD, 1, k6);
+        if (strcmp((char*)o6, "CrowdStrike") != 0) { printf("BLOB_CSD FAIL\n"); return 1; }
+        printf("BLOB_CSD: PASS (%s)\n", o6);
+    }
+    {
+        unsigned char k7[16], o7[32];
+        TinyKey(k7);
+        TinyDecryptString((char*)o7, BLOB_PPN2, 2, k7);
+        if (strcmp((char*)o7, "PspCreateProcessNotifyRoutine") != 0) { printf("BLOB_PPN2 FAIL\n"); return 1; }
+        printf("BLOB_PPN2: PASS (%s)\n", o7);
+    }
+    {
+        unsigned char k8[16], o8[32];
+        TinyKey(k8);
+        TinyDecryptString((char*)o8, BLOB_PTN2, 2, k8);
+        if (strcmp((char*)o8, "PspCreateThreadNotifyRoutine") != 0) { printf("BLOB_PTN2 FAIL\n"); return 1; }
+        printf("BLOB_PTN2: PASS (%s)\n", o8);
+    }
+    {
+        unsigned char k9[16], o9[32];
+        TinyKey(k9);
+        TinyDecryptString((char*)o9, BLOB_PPN, 2, k9);
+        if (strcmp((char*)o9, "PspProcessNotifyRoutine") != 0) { printf("BLOB_PPN FAIL\n"); return 1; }
+        printf("BLOB_PPN: PASS (%s)\n", o9);
+    }
+    {
+        unsigned char k10[16], o10[32];
+        TinyKey(k10);
+        TinyDecryptString((char*)o10, BLOB_PTN, 2, k10);
+        if (strcmp((char*)o10, "PspThreadNotifyRoutine") != 0) { printf("BLOB_PTN FAIL\n"); return 1; }
+        printf("BLOB_PTN: PASS (%s)\n", o10);
+    }
+    {
+        unsigned char k11[16], o11[32];
+        TinyKey(k11);
+        TinyDecryptString((char*)o11, BLOB_LIN, 2, k11);
+        if (strcmp((char*)o11, "PspLoadImageNotifyRoutine") != 0) { printf("BLOB_LIN FAIL\n"); return 1; }
+        printf("BLOB_LIN: PASS (%s)\n", o11);
+    }
+    {
+        unsigned char k12[16], o12[32];
+        TinyKey(k12);
+        TinyDecryptString((char*)o12, BLOB_CMH, 2, k12);
+        if (strcmp((char*)o12, "CmCallbackListHead") != 0) { printf("BLOB_CMH FAIL\n"); return 1; }
+        printf("BLOB_CMH: PASS (%s)\n", o12);
+    }
+    {
+        unsigned char k13[16], o13[32];
+        TinyKey(k13);
+        TinyDecryptString((char*)o13, BLOB_CBH2, 2, k13);
+        if (strcmp((char*)o13, "CallbackListHead") != 0) { printf("BLOB_CBH2 FAIL\n"); return 1; }
+        printf("BLOB_CBH2: PASS (%s)\n", o13);
+    }
+    {
+        unsigned char k14[16], o14[32];
+        TinyKey(k14);
+        TinyDecryptString((char*)o14, BLOB_CBH3, 2, k14);
+        if (strcmp((char*)o14, "CmCallBackListHead") != 0) { printf("BLOB_CBH3 FAIL\n"); return 1; }
+        printf("BLOB_CBH3: PASS (%s)\n", o14);
+    }
+    {
+        unsigned char k15[16], o15[32];
+        TinyKey(k15);
+        TinyDecryptString((char*)o15, BLOB_CBCT, 2, k15);
+        if (strcmp((char*)o15, "CmpCallBackCount") != 0) { printf("BLOB_CBCT FAIL\n"); return 1; }
+        printf("BLOB_CBCT: PASS (%s)\n", o15);
+    }
     printf("ALL PASS\n");
     return 0;
 }

